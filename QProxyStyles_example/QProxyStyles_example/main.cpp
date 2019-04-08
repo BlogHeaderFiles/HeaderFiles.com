@@ -4,7 +4,7 @@
 
 class MyProxyStyle : public QProxyStyle {
 public:
-  MyProxyStyle(const QString& name)
+  explicit MyProxyStyle(const QString& name)
     : QProxyStyle(name),
       m_warning_icon(":/resources/warning.png") {
   }
