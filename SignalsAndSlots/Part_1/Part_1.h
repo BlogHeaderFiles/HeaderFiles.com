@@ -20,6 +20,7 @@ public slots:
 protected slots:
   void onObjectSignal();
   void changeStatusBar(const QString& label = "Hello world!");
+  void onDisconnect();
 
 private:
   Ui::Part_1Class ui;

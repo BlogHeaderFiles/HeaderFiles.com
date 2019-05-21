@@ -27,6 +27,8 @@ Part_1::Part_1(QWidget* parent)
   // 'clicked' has a boolean argument, omitted here
   connect(ui.btnChangeStatusBar, SIGNAL(clicked()), SLOT(changeStatusBar()));
 
+  connect(ui.btnDisconnect, SIGNAL(clicked()), SLOT(onDisconnect()));
+
   connect(ui.actionAction, SIGNAL(triggered()), &m_object, SIGNAL(signalEmitted()));
   connect(ui.actionToggle, SIGNAL(toggled(bool)), &m_object, SLOT(foobar(bool)));
   connect(ui.actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -53,8 +55,16 @@ void Part_1::changeStatusBar(const QString& label)
 
   m_status_label->setText(label);
 
+  qDebug() << "}";
+}
+
+void Part_1::onDisconnect()
+{
+  qDebug() << __FUNCTION__ << (sender() ? sender()->objectName() : "<no sender>") << "{";
+
   qDebug() << "  Disconnecting" << ui.btnShowMessage->text();
-  ui.btnShowMessage->disconnect(SIGNAL(clicked()));
+  // disconnect returns false if no such connection existed
+  qDebug() << "   " << ui.btnShowMessage->disconnect(SIGNAL(clicked()));
 
   qDebug() << "}";
 }
