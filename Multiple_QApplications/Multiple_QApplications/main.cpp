@@ -1,5 +1,6 @@
 #include <QtCore>
 #include <qapplication.h>
+#include <qpalette.h>
 
 QTranslator tr1;
 
@@ -47,6 +48,16 @@ void twoQApplications(int argc, char* argv[])
   qApp->setStyleSheet("QLineEdit{}");
   qDebug() << "qApp->styleSheet() = " << qApp->styleSheet();
 
+  const auto group = QPalette::Active;
+  const auto role = QPalette::Text;
+  auto palette = qApp->palette();
+  qDebug() << "qApp->palette before:" << palette.color(group, role).name();
+
+  palette.setColor(group, role, "#123456");
+  qDebug() << "new palette:" << palette.color(group, role).name();
+  qApp->setPalette(palette);
+  qDebug() << "qApp->palette after:" << qApp->palette().color(group, role).name();
+
   do { // limite scope of second application
     QApplication a2(argc, argv);
     a2.setApplicationName("a2");
@@ -55,6 +66,7 @@ void twoQApplications(int argc, char* argv[])
     qDebug() << "a1.applicationName() =" << a1.applicationName(); // as if called from qApp
     qDebug() << "qApp->applicationName() =" << qApp->applicationName();
     qDebug() << "qApp->styleSheet() = " << qApp->styleSheet();
+    qDebug() << "qApp->palette after:" << qApp->palette().color(group, role).name();
     QObject::connect(&a2, &QCoreApplication::aboutToQuit, []() { qDebug() << "aboutToQuit from a2!"; });
 
     testTranslators(a1);
