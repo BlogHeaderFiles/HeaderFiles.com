@@ -4,6 +4,7 @@
 
 bool is_palindrom(const char* str, size_t len)
 {
+    if (len == 0) return true;
     for (size_t ii = 0, jj = len - 1; ii < jj; ++ii, --jj) {
         if (str[ii] != str[jj]) return false;
     }
@@ -35,6 +36,7 @@ int main()
 {
     std::cout << std::boolalpha;
     
+    test("");
     test("ana");
     test("animal lamina");
     test("aaaa");
