@@ -22,7 +22,7 @@ namespace
   template<class K, class V>
   struct qmap_wrapper {
     QMap<K, V>& map;
-    qmap_wrapper(QMap<K, V>& map_) : map(map_) {}
+    explicit qmap_wrapper(QMap<K, V>& map_) : map(map_) {}
     auto begin() { return map.keyValueBegin(); }
     auto end() { return map.keyValueEnd(); }
   };
@@ -31,7 +31,7 @@ namespace
   struct qmap_wrapper_pre510 {
     using qiterator = QKeyValueIterator<K, V, typename QMap<K, V>::iterator>;
     QMap<K, V>& map;
-    qmap_wrapper_pre510(QMap<K, V>& map_) : map(map_) {}
+    explicit qmap_wrapper_pre510(QMap<K, V>& map_) : map(map_) {}
     auto begin() { return qiterator(map.begin()); }
     auto end() { return qiterator(map.end()); }
   };
