@@ -1,8 +1,16 @@
-#include <QtCore>
+﻿#include <QtCore>
 #include <qapplication.h>
 #include <qpalette.h>
 
 QTranslator tr1;
+
+class MyObject : public QObject {
+public:
+  explicit MyObject(QObject *parent) : QObject(parent) {
+    qDebug() << "****" << __FUNCTION__ << this->parent();
+  }
+  ~MyObject() { qDebug() << "****" << __FUNCTION__ << parent(); }
+};
 
 void testTranslators(QApplication& a)
 {
@@ -26,6 +34,8 @@ void oneQApplication(int argc, char* argv[])
   QTimer::singleShot(2000, &a1, &QCoreApplication::quit); // as if connected to latest qApp
 
   testTranslators(a1);
+
+  new MyObject(qApp);
 
   qApp->exec();
   qDebug() << "-----";
@@ -58,6 +68,8 @@ void twoQApplications(int argc, char* argv[])
   qApp->setPalette(palette);
   qDebug() << "qApp->palette after:" << qApp->palette().color(group, role).name();
 
+  new MyObject(qApp);
+
   do { // limite scope of second application
     QApplication a2(argc, argv);
     a2.setApplicationName("a2");
@@ -70,6 +82,8 @@ void twoQApplications(int argc, char* argv[])
     QObject::connect(&a2, &QCoreApplication::aboutToQuit, []() { qDebug() << "aboutToQuit from a2!"; });
 
     testTranslators(a1);
+
+    new MyObject(qApp);
 
     qApp->exec();
   } while (false);
