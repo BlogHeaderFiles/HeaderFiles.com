@@ -332,3 +332,4 @@ ASALocalRun/
 # Qt related
 **/GeneratedFiles/
 build-*/
+*.out
