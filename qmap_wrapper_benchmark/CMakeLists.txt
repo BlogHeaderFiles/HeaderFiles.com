@@ -1,6 +1,6 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.1.0)
 
-PROJECT(qmap_wrapper VERSION 1.0.0 LANGUAGES CXX)
+PROJECT(qmap_wrapper_benchmark VERSION 1.0.0 LANGUAGES CXX)
 
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -15,11 +15,11 @@ ENDIF()
 
 FIND_PACKAGE(Qt5Test REQUIRED)
 
-ADD_EXECUTABLE(qmap_wrapper
+ADD_EXECUTABLE(qmap_wrapper_benchmark
   main.cpp
   qmap_wrapper.h
   test.h
   test.cpp
 )
 
-TARGET_LINK_LIBRARIES(qmap_wrapper Qt5::Test)
+TARGET_LINK_LIBRARIES(qmap_wrapper_benchmark Qt5::Test)
