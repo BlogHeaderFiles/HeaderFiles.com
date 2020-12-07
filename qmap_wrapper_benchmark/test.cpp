@@ -20,9 +20,9 @@ void Test::qmap_values()
 {
   auto map = generateMapStringKey();
 
-  int sum = 0;
   QBENCHMARK
   {
+    int sum = 0;
     for (const auto &value : map) { sum += value; }
   }
 }
@@ -31,9 +31,9 @@ void Test::qmap_keys()
 {
   auto map = generateMapStringKey();
 
-  int sum = 0;
   QBENCHMARK
   {
+    int sum = 0;
     for (const auto &key : map.keys()) { sum += map[key]; }
   }
 }
@@ -42,9 +42,9 @@ void Test::qmap_tostdmap()
 {
   auto map = generateMapStringKey();
 
-  int sum = 0;
   QBENCHMARK
   {
+    int sum = 0;
     for (const auto &it : map.toStdMap()) { sum += it.second; }
   }
 }
@@ -53,9 +53,9 @@ void Test::qmap_iterator()
 {
   auto map = generateMapStringKey();
 
-  int sum = 0;
   QBENCHMARK
   {
+    int sum = 0;
     for (auto it = map.begin(); it != map.end(); ++it) { sum += it.value(); }
   }
 }
@@ -64,9 +64,9 @@ void Test::qmap_wrapper()
 {
   auto map = generateMapStringKey();
 
-  int sum = 0;
   QBENCHMARK
   {
+    int sum = 0;
     for (const auto it : ::qmap_wrapper{map}) { sum += it.second; }
   }
 }
