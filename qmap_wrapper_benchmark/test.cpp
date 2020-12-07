@@ -38,17 +38,6 @@ void Test::qmap_keys()
   }
 }
 
-void Test::qmap_const_keys()
-{
-  auto map = generateMapStringKey();
-
-  int sum = 0;
-  QBENCHMARK
-  {
-    for (const auto &key : qAsConst(map).keys()) { sum += map[key]; }
-  }
-}
-
 void Test::qmap_tostdmap()
 {
   auto map = generateMapStringKey();
