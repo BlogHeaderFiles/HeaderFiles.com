@@ -333,3 +333,6 @@ ASALocalRun/
 **/GeneratedFiles/
 build*/
 *.out
+
+.vscode
+.DS_Store
